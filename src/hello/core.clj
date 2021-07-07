@@ -1,3 +1,4 @@
+
 (ns hello.core)
 
 (defn foo
@@ -34,3 +35,26 @@
 
     (take (* 2 (count seq)) (cycle seq) ))
   )
+(defn distinctElem
+  [seq]
+  (if (empty? seq)
+    nil
+(count (into (set seq)))
+    ))
+
+
+(defn palindrome
+  [seq]
+  (if (empty? seq)
+    nil
+    )
+  (if (= seq (apply str (reverse seq)))
+    true
+    false)
+  )
+
+(defn sumOfSquares
+  [seq]
+  (if (empty? seq)
+    nil
+    ))
