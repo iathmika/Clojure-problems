@@ -27,6 +27,24 @@
   (testing "test2"
     (is (= 5 (hc/sumOfArray [-2 5 2]))))
    (testing "test3"
-    (is (= -10 (hc/sumOfArray [-2 -1 -4 -3])))))
+     (is (= -10 (hc/sumOfArray [-2 -1 -4 -3])))))
+
+(deftest distinct-element
+  (testing "test1"
+    (is (= 4 (hc/distinct-elem [1 4 3 5 3 1 4 5 1]))))
+  (testing "test2"
+    (is not (= 4 hc/distinct-elem [0 2 3 5 1 2 6 3 4 2 7 1 0]))))
+
+(deftest sum-of-squares
+  (testing "test1"
+    (is (= 14 (hc/sum-of-sq [1 2 3]))))
+  (testing "test2"
+    (is (= 35 (hc/sum-of-sq [1 -5 3]))))
+  (testing "test3"
+    (is (= 0 (hc/sum-of-sq [0])))))
+
+(deftest perfect-number-test
+  (testing "test1"
+    (is (= true (hc/perfect-number 6)))))
 
 

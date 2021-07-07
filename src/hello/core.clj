@@ -10,51 +10,47 @@
   [n]
   (if (or (= n 1) (= n 0))
     1
-    (* n (fact (dec n))))
-  
-  )
+    (* n (fact (dec n)))))
 (defn lastEl
   [seq]
   (if (empty? seq)
     nil
-    (nth seq (dec (count seq))))
-  
-  )
+    (nth seq (dec (count seq)))))
 
 (defn sumOfArray
   [seq]
   (if (empty? seq)
     0)
-  (reduce + seq)
-  )
+  (reduce + seq))
 
 (defn cycles
   [seq]
   (if (empty? seq)
     nil
+    (take (* 2 (count seq)) (cycle seq) )))
 
-    (take (* 2 (count seq)) (cycle seq) ))
-  )
-(defn distinctElem
+(defn distinct-elem
   [seq]
   (if (empty? seq)
     nil
-(count (into (set seq)))
-    ))
+(count (into (set seq)))))
 
 
 (defn palindrome
   [seq]
   (if (empty? seq)
-    nil
-    )
+    nil)
   (if (= seq (apply str (reverse seq)))
     true
-    false)
-  )
+    false))
 
-(defn sumOfSquares
+(defn sum-of-sq
   [seq]
   (if (empty? seq)
-    nil
-    ))
+    0
+    (reduce + (map #(* % %) seq))))
+
+(defn perfect-number
+  [x]
+  (= x (reduce + (filter #(zero? (mod x %)) (range 1 (inc (/ x 2)))))))
+
