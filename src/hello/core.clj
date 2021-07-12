@@ -54,3 +54,21 @@
   [x]
   (= x (reduce + (filter #(zero? (mod x %)) (range 1 (inc (/ x 2)))))))
 
+(defn find-odd-1
+  [x]
+  (filter #(odd? %) x))
+
+(defn find-odd-2
+  [x]
+  (filter #(not (zero? (mod % 2))) x)) 
+
+(defn reverse-sequence
+  [seq]
+  (reduce conj () seq))
+
+(defn fibo
+  [n x y] (if (< n 2) x
+              (fibo (- n 1) y (+ x y))))
+(defn fibo-seq
+  [n]
+  (map #(fibo % 1 1) (range 1 (+ n 1))))
