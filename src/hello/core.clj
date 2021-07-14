@@ -54,6 +54,7 @@
   [x]
   (= x (reduce + (filter #(zero? (mod x %)) (range 1 (inc (/ x 2)))))))
 
+
 (defn find-odd-1
   [x]
   (filter #(odd? %) x))
@@ -67,8 +68,19 @@
   (reduce conj () seq))
 
 (defn fibo
-  [n x y] (if (< n 2) x
-              (fibo (- n 1) y (+ x y))))
+  "This function takes three values: `n`, `x` and `y`. This is a helper function for `fibo-seq`."
+  [n x y]
+  (if (< n 2) x (fibo (- n 1) y (+ x y))))
+
 (defn fibo-seq
+  "This function generates the fibonacci sequence for the first n numbers."
   [n]
   (map #(fibo % 1 1) (range 1 (+ n 1))))
+
+(defn count-occurence
+  [seq n]
+  (count (filter #{n} seq)))
+
+(defn count-elements
+  [seq]
+  (zipmap (distinct seq) (map #(count-occurence seq %) (distinct seq))))

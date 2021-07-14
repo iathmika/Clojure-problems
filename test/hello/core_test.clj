@@ -58,13 +58,10 @@
          (is (= [4 3 2 1] (hc/reverse-sequence [1 2 3 4]))))
        (testing "positive testing"
          (is (= '(7 5 2) (hc/reverse-sequence (sorted-set 5 7 2 7)))))
-       (testing (= [[1 2][3 4][5 6]] (hc/reverse-sequence [[5 6][3 4][1 2]]))))
+       (testing (is (= [[1 2][3 4][5 6]] (hc/reverse-sequence [[5 6][3 4][1 2]])))))
 
      (deftest fibo-seq-test
-       (testing "positive testing"
-         (is (= '(1 1 2) (hc/fibo-seq 3))))
-       (testing "positive testing"
-         (is (= '(1 1 2 3 5 8) (hc/fibo-seq 6))))
-       (testing  "positive testing"
-         (is (= '(1 1 2 3 5 8 13 21) (hc/fibo-seq 8)))))
+       (is (= '(1 1 2) (hc/fibo-seq 3)))
+       (is (= '(1 1 2 3 5 8) (hc/fibo-seq 6)))
+       (is (= '(1 1 2 3 5 8 13 21) (hc/fibo-seq 8))))
     
