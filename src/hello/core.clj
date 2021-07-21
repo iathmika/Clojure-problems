@@ -202,3 +202,22 @@
     (fn [m w]
       (assoc m w (inc (m w 0))))
         {} (re-seq #"\w+" s)))
+
+
+;; finding maximum of a list using loop recur
+(defn max-using-loop
+  "find the maximum value among the elements of a list using loop and recur functions"
+  [list1]
+  (loop [max -999 s list1]
+    (if (empty? s) max 
+        (if (> (first s) max)
+          (recur (first s) (rest s))
+          (recur max (rest s))))))
+
+;;apply exlpodes a sequence so that it can be passed to a function that expects rest parameters
+
+(defn max-of-a-list
+  "find the maximum value among the elements of a list using apply function"
+  [seq]
+  (apply max seq)
+  )
