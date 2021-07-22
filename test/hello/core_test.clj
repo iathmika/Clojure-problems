@@ -68,6 +68,11 @@
 (deftest product-digits
   (is (= [5 6] (hc/product-digits 8 7)))
   (is (= [8 9 1] (hc/product-digits 99 9)))
-  (is (= [1] (hc/product-digits 11 1)))
+  (is (= [1] (hc/product-digits 1 1)))
   (is (= [9 8 9 0 1] (hc/product-digits 999 99))))
     
+(deftest compress-seq-test
+  (is (= (hc/compress-seq [1 1 2 3 3 2 2 3]) '(1 2 3 2 3)))
+  (is (= (apply str (hc/compress-seq "leeeeroyyyy")) "leroy"))
+  (is (= (hc/compress-seq [[1 2] [1 2] [3 4] [1 2]]) '([1 2] [3 4] [1 2]))))
+

@@ -248,3 +248,12 @@
   (loop [prod (* n1 n2) res []]
     (if (pos? prod) (recur (quot prod 10) (cons (rem prod 10) res))
         res)))
+
+;;Problem 3- removing duplicates
+(defn compress-seq
+  [seq]
+  (loop [s seq res []]
+    (if (empty? s) res
+        (if (= (last res) (first s))
+          (recur (rest s) res)
+          (recur (rest s) (conj res (first s)))))))
