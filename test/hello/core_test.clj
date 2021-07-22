@@ -44,4 +44,30 @@
        (is (= '(1 1 2) (hc/fibo-seq 3)))
        (is (= '(1 1 2 3 5 8) (hc/fibo-seq 6)))
        (is (= '(1 1 2 3 5 8 13 21) (hc/fibo-seq 8))))
+
+(deftest count-elements-test
+  (is (= {3 4, 7 2, 0 1} (hc/count-elements [3 0 7 3 3 7 3])))
+  (is (= {1 5, -1 9, 4 3} (hc/count-elements [1 1 4 -1 -1 -1 1 -1 4 1 -1 -1 -1 -1 -1 4 1])))
+  (is (=  {:a 2, :b 3} (hc/count-elements [:b :a :b :a :b]))))
+
+(deftest word-frequency-test
+  (is (= {"Hello" 1, "hi" 3, "hello" 2, "bye" 3, "for" 1, "now" 1} (hc/word-frequency "Hello hi hello hi hi hello bye for now bye bye") ))
+  (is (=  {"quick" 2, "fox" 2, "lazy" 1, "dog" 1, "donkey" 1, "fire" 1}
+          (hc/word-frequency
+           "quick lazy fox dog fire donkey quick fox"))))
+
+(deftest  max-of-a-list
+  (is (= 100 (hc/max-of-a-list [19 53 -7 34 100 76])))
+  (is (= -8 (hc/max-of-a-list [-78 -56 -8 -34 -100])))
+  (is (= 0 (hc/max-of-a-list [ -34 -9 -3 -13 0 -56 -1]))))
+
+(deftest flatten-test
+  (is (= [1 2 3 4 5 6 7 8] (hc/flatten1 [1 2 3 [4 5 6 [7 8]]]) (hc/flatten2 [1 2 3 [4 5 6 [7 8]]])))
+  (is (= [9 10 12 14 2 3] (hc/flatten2 [9 [10 12 14] [2 3]]) (hc/flatten1 [9 [10 12 14] [2 3]]))))
+
+(deftest product-digits
+  (is (= [5 6] (hc/product-digits 8 7)))
+  (is (= [8 9 1] (hc/product-digits 99 9)))
+  (is (= [1] (hc/product-digits 11 1)))
+  (is (= [9 8 9 0 1] (hc/product-digits 999 99))))
     

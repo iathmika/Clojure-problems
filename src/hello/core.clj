@@ -87,6 +87,8 @@
   [seq n]
   (count (filter #{n} seq)))
 
+;;Problem 55
+
 (defn count-elements
   [seq]
   (zipmap (distinct seq) (map #(count-occurence seq %) (distinct seq))))
@@ -221,3 +223,28 @@
   [seq]
   (apply max seq)
   )
+
+;; problem 28
+(defn flatten1
+  [s]
+  (loop [res [] coll s]
+    (if (empty? coll) res
+        (if (sequential? (first coll))
+          (recur (vec (concat res (flatten1 (first coll)))) (rest coll))
+          (recur (conj res (first coll)) (rest coll))))))
+
+(defn flatten2
+  [s]
+  (loop [res [] coll s]
+    (if (empty? coll) res
+        (if (sequential? (first coll))
+          (recur (into res (flatten2 (first coll))) (rest coll))
+          (recur (conj res (first coll)) (rest coll))))))
+
+;;problem 99
+
+(defn product-digits
+  [n1 n2]
+  (loop [prod (* n1 n2) res []]
+    (if (pos? prod) (recur (quot prod 10) (cons (rem prod 10) res))
+        res)))
