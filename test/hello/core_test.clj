@@ -63,7 +63,8 @@
 
 (deftest flatten-test
   (is (= [1 2 3 4 5 6 7 8] (hc/flatten1 [1 2 3 [4 5 6 [7 8]]]) (hc/flatten2 [1 2 3 [4 5 6 [7 8]]])))
-  (is (= [9 10 12 14 2 3] (hc/flatten2 [9 [10 12 14] [2 3]]) (hc/flatten1 [9 [10 12 14] [2 3]]))))
+  (is (= [9 10 12 14 2 3] (hc/flatten2 [9 [10 12 14] [2 3]]) (hc/flatten1 [9 [10 12 14] [2 3]])))
+  (is (= [1 2 1 4 8 2 1 9 7 2] (hc/flatten-using-reduce [[[1 2 1] 4 8 2 1] 9 7 2]))))
 
 (deftest product-digits
   (is (= [5 6] (hc/product-digits 8 7)))
@@ -76,3 +77,7 @@
   (is (= (apply str (hc/compress-seq "leeeeroyyyy")) "leroy"))
   (is (= (hc/compress-seq [[1 2] [1 2] [3 4] [1 2]]) '([1 2] [3 4] [1 2]))))
 
+(deftest reverse-interleave
+  (is (= '((0 3 6) (1 4 7) (2 5 8)) (hc/reverse-interleave (range 9) 3)))
+  (is (= '((1 3 5) (2 4 6)) (hc/reverse-interleave [1 2 3 4 5 6] 2)))
+  (is (= '((0 5) (1 6) (2 7) (3 8) (4 9)) (hc/reverse-interleave (range 10) 5))))

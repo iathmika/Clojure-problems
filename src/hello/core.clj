@@ -111,8 +111,7 @@
   [number x] 
   (if (< x 1) 
     (conj number x) 
-    number)
-  )
+    number))
 
 (reduce less-than-one? [] [4 -5 -9 -1 3 ])
 (defn reduce-filter
@@ -124,8 +123,7 @@
        (conj number x)
        number))
    init
-   a
-   ))
+   a))
 
 (defn fizzbuzz
   [n]
@@ -177,8 +175,7 @@
                                  (conj res (nth seq1 init1))
                                  (and (= l 2) (= (dec (count seq1)) init1))
                                  (conj res (nth seq2 init2))
-                                 :else (conj res (nth seq1 init1) (nth seq2 init2))))
-        ))))
+                                 :else (conj res (nth seq1 init1) (nth seq2 init2))))))))
 
 (defn interleave-seq2
   [seq1 seq2]
@@ -241,15 +238,13 @@
           (recur (into res (flatten2 (first coll))) (rest coll))
           (recur (conj res (first coll)) (rest coll))))))
 
-;;problem 99
+(defn flatten-using-reduce
+  [s]
+  (reduce (fn [res fe]
+            (concat res (if (sequential? fe) (flatten-using-reduce fe) (vector fe)))) [] s))
 
-(defn product-digits
-  [n1 n2]
-  (loop [prod (* n1 n2) res []]
-    (if (pos? prod) (recur (quot prod 10) (cons (rem prod 10) res))
-        res)))
 
-;;Problem 3- removing duplicates
+;;Problem 30- removing duplicates
 (defn compress-seq
   [seq]
   (loop [s seq res []]
@@ -257,3 +252,26 @@
         (if (= (last res) (first s))
           (recur (rest s) res)
           (recur (rest s) (conj res (first s)))))))
+
+
+;;problem 99
+
+(defn product-digits
+  "finds the product of two numbers are converts the result to a sequence"
+  [n1 n2]
+  (if (or (zero? n1) (zero? n2))
+    (list 0)
+    (loop [prod (* n1 n2) res []]
+      (if (pos? prod) (recur (quot prod 10) (cons (rem prod 10) res))
+          res))))
+
+;;Problem 43
+(defn reverse-interleave
+  "takes a sequence and splits it into n parts by interleaving the sequence elements"
+  [seq n]
+  (let [seq2 (partition n seq)] 
+    (loop [s seq2 res []]
+      (if (empty? (first s)) res
+          (recur (map rest s) (conj res (map first s)))))))
+
+
